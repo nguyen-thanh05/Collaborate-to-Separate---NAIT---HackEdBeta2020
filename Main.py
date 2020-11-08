@@ -2,6 +2,7 @@ import os
 import cv2
 TRAIN_IMG = []
 TRAIN_POSITION = []
+
 def main():
     readData()
 
