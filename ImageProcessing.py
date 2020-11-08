@@ -3,11 +3,11 @@ import numpy as np
 
 class ImageProcessing():
     def __init__(self, width, length):
-        self.camera = cv2.VideoCapture("rtsp://192.168.1.95:8080/video/h264")
+        self.camera = cv2.VideoCapture("rtsp://192.168.1.64:8080/video/h264")
         self.width = width
         self.length = length
         self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
-        self.camera.set(cv2.CAP_PROF_FRAME_HEIGHT, self.length)
+        self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, self.length)
 
 
     def frameToNumpy(self, displayImg = False):
@@ -20,12 +20,9 @@ class ImageProcessing():
         frame = cv2.resize(frame, (self.width, self.length))
         cameraImg = []
         cameraImg.append(frame)
-        cameraImg = np.array(cameraImg, np.uint8)
-        self.camera.release();
-        cv2.destroyAllWindows();
+        cameraImg = np.array(frame, np.uint8)
+        #self.camera.release();
+        #cv2.destroyAllWindows();
         return cameraImg
-
-
-
-
-
+    def release(self):
+        self.camera.release();
